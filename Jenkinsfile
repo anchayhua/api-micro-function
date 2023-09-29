@@ -20,23 +20,23 @@ pipeline {
             }
         }
 
-        stage('Deploy') {
-            steps {
-                echo 'Paso 1: Acceder al servidor de producción'
-                echo 'Paso 2: Detener la versión anterior de la aplicación'
-                echo 'Paso 3: Copiar la nueva versión de la aplicación'
-                echo 'Paso 4: Iniciar la nueva versión de la aplicación'
-                echo 'Paso 5: Verificar que la aplicación esté funcionando correctamente'
-            }
-        }
-
         // stage('Deploy') {
         //     steps {
-        //         sh 'docker build -t myapp:latest .' // Construye la imagen Docker
-        //         sh 'docker push myregistry/myapp:latest' // Sube la imagen a un registro de Docker
-        //         sh 'kubectl apply -f deployment.yaml' // Implementa en Kubernetes
+        //         echo 'Paso 1: Acceder al servidor de producción'
+        //         echo 'Paso 2: Detener la versión anterior de la aplicación'
+        //         echo 'Paso 3: Copiar la nueva versión de la aplicación'
+        //         echo 'Paso 4: Iniciar la nueva versión de la aplicación'
+        //         echo 'Paso 5: Verificar que la aplicación esté funcionando correctamente'
         //     }
         // }
+
+        stage('Deploy') {
+            steps {
+                sh 'docker build -t anchayhua/api-funtion:latest .' // Construye la imagen Docker
+                // sh 'docker push anchayhua/api-funtion' // Sube la imagen a un registro de Docker
+                // sh 'kubectl apply -f deployment.yaml' // Implementa en Kubernetes
+            }
+        }
 
     }
 }
