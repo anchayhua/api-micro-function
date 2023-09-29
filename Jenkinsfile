@@ -32,9 +32,9 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                sh 'docker build -t anchayhua/api-funtion:latest .' // Construye la imagen Docker
-                // sh 'docker push anchayhua/api-funtion' // Sube la imagen a un registro de Docker
-                // sh 'kubectl apply -f deployment.yaml' // Implementa en Kubernetes
+                sh 'docker build -t anchayhua/api-micro-function:latest .' // Construye la imagen Docker
+                sh 'docker push anchayhua/api-micro-function' // Sube la imagen a un registro de Docker
+                sh 'kubectl apply -f deployment.yaml' // Implementa en Kubernetes
             }
         }
 
