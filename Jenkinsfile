@@ -30,6 +30,12 @@ pipeline {
         //     }
         // }
 
+        stage('Test kubectl') {
+            steps {
+                sh 'kubectl version'
+            }
+        }
+
         stage('Deploy') {
             steps {
                 // sh 'docker build -t anchayhua/api-micro-function:latest .' // Construye la imagen Docker
