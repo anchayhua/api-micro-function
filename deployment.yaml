@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-funtion-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: api-funtion
+  template:
+    metadata:
+      labels:
+        app: api-funtion
+    spec:
+      containers:
+      - name: api-funtion
+        image: anchayhua/api-funtion
+        ports:
+        - containerPort: 8080
