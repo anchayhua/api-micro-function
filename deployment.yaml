@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: api-funtion-deployment
+  name: api-micro-function-deployment
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: api-funtion
+      app: api-micro-function
   template:
     metadata:
       labels:
-        app: api-funtion
+        app: api-micro-function
     spec:
       containers:
-      - name: api-funtion
-        image: anchayhua/api-funtion
+      - name: api-micro-function
+        image: anchayhua/api-micro-function
         ports:
         - containerPort: 8080

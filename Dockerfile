@@ -5,7 +5,7 @@ FROM openjdk:17-alpine
 WORKDIR /app
 
 # Copia el archivo JAR de tu aplicación construida por Gradle al contenedor
-COPY build/libs/api-funtion-0.0.1-SNAPSHOT.jar app.jar
+COPY build/libs/api-micro-function-0.0.1-SNAPSHOT.jar app.jar
 
 # Expone el puerto en el que tu aplicación Spring Boot escucha (puerto 8080 por defecto)
 EXPOSE 8080
@@ -41,7 +41,7 @@ CMD ["java", "-jar", "app.jar"]
 # WORKDIR /app
 
 # # Copia el archivo JAR construido desde la etapa de construcción al contenedor
-# COPY --from=build /home/gradle/build/libs/api-funtion-0.0.1-SNAPSHOT.jar app.jar
+# COPY --from=build /home/gradle/build/libs/api-micro-function-0.0.1-SNAPSHOT.jar app.jar
 
 # # Expone el puerto en el que tu aplicación Spring Boot escucha (puerto 8080 por defecto)
 # EXPOSE 8080
