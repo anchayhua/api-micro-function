@@ -33,8 +33,8 @@ pipeline {
             steps {
                 sh 'echo $SONAR_CREDENTIALS' // Ejecuta las pruebas del proyecto
                 sh './gradlew sonar \
-                        -Dsonar.projectKey=$SONAR_CREDENTIALS_USR \
-                        -Dsonar.projectName=$SONAR_CREDENTIALS_USR \
+                        -Dsonar.projectKey=devops \
+                        -Dsonar.projectName=devops \
                         -Dsonar.host.url=http://localhost:9000 \
                         -Dsonar.token=$SONAR_CREDENTIALS_PSW' // Analiza y prueba en sonar el proyecto
             }
