@@ -29,7 +29,13 @@ pipeline {
         stage('Build Docker') {
             steps {
                 sh 'docker build -t anchayhua/api-micro-function:latest .' // Construye la imagen Docker
-                sh 'docker push anchayhua/api-micro-function' // Sube la imagen a un registro de Docker
+                // sh 'docker push anchayhua/api-micro-function' // Sube la imagen a un registro de Docker
+                script {
+                    docker.withRegistry('https://index.docker.io/v1/', 'docker-hub-credentials') {
+                        // Aquí ejecuta el comando docker push
+                        sh "docker push anchayhua/api-micro-function"
+                    }
+                }
             }
         }
 
