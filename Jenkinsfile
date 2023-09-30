@@ -34,20 +34,20 @@ pipeline {
         //     }
         // }
 
-        stage('Buil, Login & Push Image Docker Hub') {
-            steps {
-                sh 'docker build -t anchayhua/api-micro-function:latest .' // Construye la imagen Docker
-                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-                sh 'docker push anchayhua/api-micro-function' // Sube la imagen a un registro de Docker
-            }
-        }
-
-        // stage('Test kubectl') {
+        // stage('Buil, Login & Push Image Docker Hub') {
         //     steps {
-        //         echo 'Solo falta la autenticacion en el K8s'
-        //         // sh 'kubectl version'
+        //         sh 'docker build -t anchayhua/api-micro-function:latest .' // Construye la imagen Docker
+        //         sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+        //         sh 'docker push anchayhua/api-micro-function' // Sube la imagen a un registro de Docker
         //     }
         // }
+
+        stage('Test kubectl') {
+            steps {
+                echo 'Solo falta la autenticacion en el K8s'
+                sh 'kubectl version'
+            }
+        }
 
         // stage('Deploy') {
         //     steps {
