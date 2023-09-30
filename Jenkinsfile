@@ -22,30 +22,30 @@ pipeline {
             }
         }
 
-        // stage('Test JUnit') {
-        //     steps {
-        //         sh './gradlew test' // Ejecuta las pruebas del proyecto
-        //     }
-        // }
+        stage('Test JUnit') {
+            steps {
+                sh './gradlew test' // Ejecuta las pruebas del proyecto
+            }
+        }
 
-        // stage('Run SonarQube Analysis') {
-        //     steps {
-        //         sh './gradlew sonar' // Analiza y prueba en sonar el proyecto
-        //     }
-        // }
+        stage('Run SonarQube Analysis') {
+            steps {
+                sh './gradlew sonar' // Analiza y prueba en sonar el proyecto
+            }
+        }
 
-        // stage('Buil, Login & Push Image Docker Hub') {
-        //     steps {
-        //         sh 'docker build -t anchayhua/api-micro-function:latest .' // Construye la imagen Docker
-        //         sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-        //         sh 'docker push anchayhua/api-micro-function' // Sube la imagen a un registro de Docker
-        //     }
-        // }
+        stage('Buil, Login & Push Image Docker Hub') {
+            steps {
+                sh 'docker build -t anchayhua/api-micro-function:latest .' // Construye la imagen Docker
+                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+                sh 'docker push anchayhua/api-micro-function' // Sube la imagen a un registro de Docker
+            }
+        }
 
         stage('Test kubectl') {
             steps {
                 echo 'Solo falta la autenticacion en el K8s'
-                sh 'kubectl version'
+                // sh 'kubectl version'
             }
         }
 

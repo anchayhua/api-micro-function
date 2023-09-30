@@ -30,7 +30,7 @@ sonarqube {
         property "sonar.projectKey", "devops"
         property "sonar.projectName", "devops"
         property "sonar.host.url", "http://localhost:9000"
-        property "sonar.login", "sqp_4c3a3b6ce8092c9e4ec29ed61aa16a7f746b810c"
+        property "sonar.login", "sqb_784f56315c39bdd1912944f390a2a50d1177913f"
     }
 }
 
