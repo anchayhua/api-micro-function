@@ -31,7 +31,6 @@ pipeline {
 
         stage('Run SonarQube Analysis') {
             steps {
-                sh 'echo $SONAR_CREDENTIALS' // Ejecuta las pruebas del proyecto
                 sh './gradlew sonar \
                         -Dsonar.projectKey=devops \
                         -Dsonar.projectName=devops \
