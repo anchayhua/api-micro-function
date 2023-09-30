@@ -6,7 +6,7 @@ pipeline {
     }
 
     environment {
-        DOCKERHUB CREDENTIALS = credentials ('jenkins-dockerhub')
+        DOCKERHUB_CREDENTIALS = credentials('jenkins-dockerhub')
     }
 
     stages {
@@ -16,13 +16,13 @@ pipeline {
             }
         }
 
-        stage('Build') {
+        stage('Build Project') {
             steps {
                 sh './gradlew build' // Ejecuta el comando Gradle para construir el proyecto
             }
         }
 
-        // stage('Test') {
+        // stage('Test JUnit') {
         //     steps {
         //         sh './gradlew test' // Ejecuta las pruebas del proyecto
         //     }
@@ -34,9 +34,10 @@ pipeline {
         //     }
         // }
 
-        stage('Build Docker') {
+        stage('Buil, Login & Push Image Docker Hub') {
             steps {
-                // sh 'docker build -t anchayhua/api-micro-function:latest .' // Construye la imagen Docker
+                sh 'docker build -t anchayhua/api-micro-function:latest .' // Construye la imagen Docker
+                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
                 sh 'docker push anchayhua/api-micro-function' // Sube la imagen a un registro de Docker
             }
         }
