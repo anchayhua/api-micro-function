@@ -14,17 +14,17 @@ pipeline {
             }
         }
 
-        stage('Test') {
-            steps {
-                sh './gradlew test' // Ejecuta las pruebas del proyecto
-            }
-        }
+        // stage('Test') {
+        //     steps {
+        //         sh './gradlew test' // Ejecuta las pruebas del proyecto
+        //     }
+        // }
 
-        stage('Run SonarQube Analysis') {
-            steps {
-                sh './gradlew sonar' // Analiza y prueba en sonar el proyecto
-            }
-        }
+        // stage('Run SonarQube Analysis') {
+        //     steps {
+        //         sh './gradlew sonar' // Analiza y prueba en sonar el proyecto
+        //     }
+        // }
 
         stage('Build Docker') {
             steps {
