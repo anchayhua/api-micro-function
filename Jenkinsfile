@@ -35,7 +35,6 @@ pipeline {
                 sh './gradlew sonar \
                         -Dsonar.projectKey=devops \
                         -Dsonar.projectName=devops \
-                        -Dsonar.host.url=http://localhost:9000 \
                         -Dsonar.token=$SONAR_CREDENTIALS_PSW' // Analiza y prueba en sonar el proyecto
             }
         }
