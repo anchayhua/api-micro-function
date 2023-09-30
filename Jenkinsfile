@@ -1,6 +1,14 @@
 pipeline {
     agent any // Esto indica que se puede ejecutar en cualquier agente de Jenkins
 
+    options {
+        buildDiscarder (logRotator (numToKeepStr: '5'))        
+    }
+
+    environment {
+        DOCKERHUB CREDENTIALS = credentials ('jenkins-dockerhub')
+    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -28,14 +36,8 @@ pipeline {
 
         stage('Build Docker') {
             steps {
-                sh 'docker build -t anchayhua/api-micro-function:latest .' // Construye la imagen Docker
-                // sh 'docker push anchayhua/api-micro-function' // Sube la imagen a un registro de Docker
-                script {
-                    docker.withRegistry('https://index.docker.io/v1/', 'docker-hub-credentials') {
-                        // Aquí ejecuta el comando docker push
-                        sh "docker push anchayhua/api-micro-function"
-                    }
-                }
+                // sh 'docker build -t anchayhua/api-micro-function:latest .' // Construye la imagen Docker
+                sh 'docker push anchayhua/api-micro-function' // Sube la imagen a un registro de Docker
             }
         }
 
@@ -54,6 +56,20 @@ pipeline {
         //         sh 'kubectl apply -f service.yaml'
         //     }
         // }
-
     }
+
+    post {
+        always {
+            sh 'docker logout'
+        }
+        success {
+            // Acciones a realizar si el pipeline se ejecuta con éxito
+            echo 'El pipeline se ha ejecutado con éxito.'
+        }
+        failure {
+            // Acciones a realizar si el pipeline falla
+            echo 'El pipeline ha fallado. Se requiere atención.'
+        }
+    }
+
 }
