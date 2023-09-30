@@ -7,6 +7,7 @@ pipeline {
 
     environment {
         DOCKERHUB_CREDENTIALS = credentials('jenkins-dockerhub')
+        SONAR_CREDENTIALS = credentials('devops')
     }
 
     stages {
@@ -30,7 +31,11 @@ pipeline {
 
         stage('Run SonarQube Analysis') {
             steps {
-                sh './gradlew sonar' // Analiza y prueba en sonar el proyecto
+                sh './gradlew sonar \
+                        -Dsonar.projectKey=$SONAR_CREDENTIALS_USR \
+                        -Dsonar.projectName=$SONAR_CREDENTIALS_USR \
+                        -Dsonar.host.url=http://localhost:9000 \
+                        -Dsonar.token=$SONAR_CREDENTIALS_PSW' // Analiza y prueba en sonar el proyecto
             }
         }
 

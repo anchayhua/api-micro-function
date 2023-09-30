@@ -27,10 +27,7 @@ dependencies {
 
 sonarqube {
     properties {
-        property "sonar.projectKey", "devops"
-        property "sonar.projectName", "devops"
         property "sonar.host.url", "http://localhost:9000"
-        property "sonar.login", "sqp_b425b69f287f4b4db24a639c7e2182380802e9aa"
     }
 }
 
