@@ -20,6 +20,17 @@ pipeline {
             }
         }
 
+        stage('SonarQube Analysis') {
+            steps {
+                script {
+                    def scannerHome = tool name: 'SonarQube Scanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+                    withSonarQubeEnv('SonarQube Server') {
+                        sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=devops -Dsonar.sources=src -Dsonar.host.url=http://localhost:9000 -Dsonar.login=sqp_4c3a3b6ce8092c9e4ec29ed61aa16a7f746b810c"
+                    }
+                }
+            }
+        }
+
         stage('Test kubectl') {
             steps {
                 echo 'Solo falta la autenticacion en el K8s'
