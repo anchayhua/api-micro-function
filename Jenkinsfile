@@ -38,7 +38,7 @@ pipeline {
             }
         }
 
-        stage('Buil, Login & Push Image Docker Hub') {
+        stage('Build, Login & Push Image Docker Hub') {
             steps {
                 sh 'docker build -t anchayhua/api-micro-function:latest .' // Construye la imagen Docker
                 sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
@@ -54,7 +54,7 @@ pipeline {
             }
         }
 
-        stage('Deploy') {
+        stage('Deploy to k8s') {
             steps {
                 sh 'kubectl apply -f deployment.yaml'
                 sh 'kubectl apply -f service.yaml'
