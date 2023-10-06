@@ -48,7 +48,8 @@ pipeline {
 
         stage('Test kubectl') {
             steps {
-                echo 'Solo falta la autenticacion en el K8s'
+                echo 'Configurando contexto de Kubernetes'
+                sh 'kubectl config use-context minikube'
                 sh 'kubectl version'
             }
         }
