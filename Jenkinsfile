@@ -54,14 +54,12 @@ pipeline {
             }
         }
 
-        // stage('Deploy') {
-        //     steps {
-        //         // sh 'docker build -t anchayhua/api-micro-function:latest .' // Construye la imagen Docker
-        //         // sh 'docker push anchayhua/api-micro-function' // Sube la imagen a un registro de Docker
-        //         sh 'kubectl apply -f deployment.yaml'
-        //         sh 'kubectl apply -f service.yaml'
-        //     }
-        // }
+        stage('Deploy') {
+            steps {
+                sh 'kubectl apply -f deployment.yaml'
+                sh 'kubectl apply -f service.yaml'
+            }
+        }
     }
 
     post {
