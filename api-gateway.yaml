@@ -1,14 +1,16 @@
-apiVersion: networking.k8s.io/v2
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: api-gateway-api-micro-function
-  annotations:
-    kubernetes.io/ingress.class: nginx
 spec:
+  ingressClassName: nginx  # Reemplaza "nginx" con el nombre de la clase de Ingress que deseas utilizar
   rules:
   - http:
       paths:
       - path: /
+        pathType: Prefix
         backend:
-          service: api-micro-function
-          servicePort: 8080
+          service:
+            name: api-micro-function-service
+            port:
+              number: 8080
