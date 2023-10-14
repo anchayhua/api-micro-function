@@ -7,7 +7,7 @@ spec:
   rules:
   - http:
       paths:
-      - path: /
+      - path: /api-micro-function
         pathType: Prefix
         backend:
           service:
