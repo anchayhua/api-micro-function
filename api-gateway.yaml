@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: api-gateway-api-micro-function
@@ -10,5 +10,5 @@ spec:
       paths:
       - path: /
         backend:
-          serviceName: api-micro-function
+          service: api-micro-function
           servicePort: 8080
